@@ -1,0 +1,13 @@
+/target/
+/vendor/
+/bin/
+/.cargo/
+.env
+.env.*
+*.session
+*.blob
+*.secret
+*.enc
+agent.addr
+metadata.json
+__pycache__/

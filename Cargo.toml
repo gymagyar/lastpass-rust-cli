@@ -1,0 +1,56 @@
+[package]
+name = "lastpass-cli-rust"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85"
+license = "GPL-2.0-or-later"
+description = "Rust port of the supplied LastPass CLI protocol and vault commands"
+
+[lib]
+name = "lastpass_cli"
+path = "src/lib.rs"
+
+[[bin]]
+name = "lpass-rs"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1"
+aes = "0.8"
+aes-gcm = "0.10"
+base64 = "0.22"
+cbc = { version = "0.1", features = ["alloc", "block-padding"] }
+clap = { version = "4.5", features = ["derive", "env"] }
+csv = "1"
+dirs = "6"
+ecb = { version = "0.1", features = ["alloc", "block-padding"] }
+hex = "0.4"
+pbkdf2 = "0.12"
+quick-xml = "0.38"
+rand = "0.8"
+regex = "1"
+reqwest = { version = "0.12", default-features = false, features = ["blocking", "rustls-tls", "gzip"] }
+rpassword = "7"
+rsa = { version = "0.9", features = ["sha1", "sha2"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha1 = "0.10"
+sha2 = "0.10"
+url = "2"
+zeroize = { version = "1", features = ["derive"] }
+
+[dev-dependencies]
+tempfile = "3"
+
+[profile.release]
+strip = true
+lto = false
+codegen-units = 1
+
+[profile.dev]
+opt-level = 1
+codegen-units = 1
+debug = 1
+
+[lints.rust]
+unsafe_code = "forbid"
